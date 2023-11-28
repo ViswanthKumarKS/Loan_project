@@ -1,0 +1,279 @@
+
+  <div class="my-5 d-flex justify-content-end">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      New Account+
+    </button>
+   
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Account Form</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <section class="loan-deatils-area bg_disable">
+            <div class="container">
+              <form #accountForm="ngForm" (ngSubmit)="onSubmit(accountForm)">
+                <div class="row gy-4">
+                  <div class="col-md-6">
+                    <label class="form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      aria-describedby="nameHelp"
+                      name="name"
+                      [(ngModel)]="name"
+                      ngModel
+                      required
+                      minlength="3"
+                      maxlength="15"
+                      #Namevaild="ngModel"
+                      [ngClass]="
+                        Namevaild.invalid && Namevaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="Namevaild.invalid" class="invalid-feedback">
+                      please enter the name min 3 characters
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Account Number</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      name="accountNumber"
+                      [(ngModel)]="accountnumber"
+                      ngModel
+                      required
+                      pattern="[0-9]{1,10}"
+                      #accNumValid="ngModel"
+                      [ngClass]="
+                        accNumValid.invalid && accNumValid.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div
+                      *ngIf="accNumValid.invalid && accNumValid.dirty"
+                      class="invalid-feedback"
+                    >
+                      Please enter a valid account number.
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="form-label">Address</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="address"
+                      aria-describedby="nameHelp"
+                      name="address"
+                      [(ngModel)]="address"
+                      ngModel
+                      required
+                      minlength="3"
+                      #addressvaild="ngModel"
+                      [ngClass]="
+                        addressvaild.invalid && addressvaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="addressvaild.invalid" class="invalid-feedback">
+                      please enter the address
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">City</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="city"
+                      aria-describedby="nameHelp"
+                      name="city"
+                      [(ngModel)]="city"
+                      ngModel
+                      required
+                      minlength="3"
+                      #cityvaild="ngModel"
+                      [ngClass]="
+                        cityvaild.invalid && cityvaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="cityvaild.invalid" class="invalid-feedback">
+                      please enter the city
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">State</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="state"
+                      aria-describedby="nameHelp"
+                      name="state"
+                      [(ngModel)]="state"
+                      ngModel
+                      required
+                      minlength="3"
+                      #statevaild="ngModel"
+                      [ngClass]="
+                        statevaild.invalid && statevaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="statevaild.invalid" class="invalid-feedback">
+                      please enter the state
+                    </div>
+                  </div>
+
+                  <div class="col-md-5">
+                    <label class="form-label">Balance</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="nameHelp"
+                      name="balance"
+                      [(ngModel)]="balance"
+                      ngModel
+                      required
+                      pattern="[0-9]+(\.[0-9]{1,2})?"
+                      #balancevalid="ngModel"
+                      [ngClass]="
+                        balancevalid.invalid && balancevalid.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div
+                      *ngIf="balancevalid.invalid && balancevalid.dirty"
+                      class="invalid-feedback"
+                    >
+                      Please enter a valid balance.
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-60">
+                  <div class="col-md-12 my-5">
+                    <div
+                      class="nav-btn d-flex flex-wrap justify-content-center"
+                    >
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="accountForm.invalid"
+                        data-bs-dismiss="modal"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="d-flex">
+
+
+
+<div class="row">
+  <div class="card-deck">
+    <div class="d-flex vw-500">
+    <div class="col-6">
+      <div *ngFor="let account of accounts" class="card mb-3">
+        
+        <div class="card-header bg-dark text-white">
+          <h5 class="card-title ">Account Details</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong><i class="fas fa-user"></i> : </strong> {{ account.name }}
+          </p>
+          <p class="card-text">
+            <strong><i class="fas fa-id-card"></i> : </strong> {{ account.id }}
+          </p>
+          <p class="card-text">
+            <strong><i class="fas fa-user"></i> : </strong>
+            {{ account.username }}
+          </p>
+          <p class="card-text">
+            <strong><i class="fas fa-credit-card"></i> : </strong>
+            {{ account.acc_no }}
+          </p>
+          <p class="card-text">
+            <strong><i class="fas fa-balance-scale"></i> : </strong>
+            {{ account.balance }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 mx-5">
+      <div *ngFor="let account of accounts" class="card mb-3">
+        <div class="card-header bg-dark text-white">
+          <h5 class="card-title">Address Details</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong><i class="fas fa-map-marker-alt"></i> : </strong>
+            {{ account.address }}
+          </p>
+          <p class="card-text">
+            <strong><i class="fas fa-flag"></i> : </strong> {{ account.state }}
+          </p>
+          <p class="card-text">
+            <strong><i class="fas fa-city"></i> : </strong> {{ account.city }}
+          </p>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-6 col-xl-4 offset-xl-1 h-75 w-50">
+  <ng-lottie [options]="options"  *ngIf="accountCreated"></ng-lottie>
+</div>
+</div>
+<!-- <div *ngIf="accountCreated ">
+
+  
+</div> -->

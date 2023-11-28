@@ -1,0 +1,89 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div
+            class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start my-5"
+          >
+            <p class="lead fw-normal mb-0 me-3">Welcome to Login page</p>
+          </div>
+
+          
+          <div class="form-outline mb-4 col-md-8">
+            <input
+              type="email"
+              id="form-label"
+              class="form-control form-control-lg"
+              placeholder="Enter a valid Username"
+              name="username"
+              [(ngModel)]="username"
+              ngModel
+              required
+              minlength="3"
+              maxlength="15"
+              #Namevaild="ngModel"
+              [(ngModel)]="nameRef"
+              [ngClass]="
+                Namevaild.invalid && Namevaild.dirty ? 'is-invalid ' : ''
+              "
+            />
+            <div *ngIf="Namevaild.invalid" class="invalid-feedback">
+              please enter the name min 3 characters
+            </div>
+            <label class="form-label" for="form3Example3" id="username"
+              >Username</label
+            >
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3 col-md-8">
+            <input
+              type="password"
+              id="form-label"
+              class="form-control form-control-lg"
+              placeholder="Enter password"
+              [(ngModel)]="password"
+              name="password"
+              ngModel
+              required
+              minlength="2"
+              maxlength="8"
+              #passwordModel="ngModel"
+              [ngClass]="{
+                'is-invalid': passwordModel.invalid && passwordModel.dirty
+              }"
+            />
+            <div *ngIf="passwordModel.invalid" class="invalid-feedback">
+              Please enter a valid password
+            </div>
+
+            <label class="form-label" for="form3Example4">Password</label>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              router
+              Link=" "
+              [disabled]="loginForm.invalid"
+            >
+              Login
+            </button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">
+              Don't have an account?
+              <a href="#!" class="link-danger" routerLink="/register"
+                >Register</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4 col-lg-6 col-xl-4 offset-xl-1 w-200 h-200">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+    </div>
+  </div>
+</section>

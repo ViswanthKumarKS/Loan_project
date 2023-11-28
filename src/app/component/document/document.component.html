@@ -1,0 +1,137 @@
+<!-- Button trigger modal -->
+<div class="d-flex justify-content-end">
+  <button
+    type="button"
+    class="btn btn-primary my-5"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    New Document +
+  </button>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Document Form</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          #form="ngForm"
+          (ngSubmit)="submitForm(form)"
+          action="/upload"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <label for="file">Select a file:</label>
+          <input
+            type="file"
+            id="file"
+            name="documentFile"
+            accept=".pdf, .doc, .docx"
+            (change)="onFileSelected($event)"
+            ngModel
+            required
+            #documentvalid="ngModel"
+            [(ngModel)]="file"
+            [ngClass]="
+              documentvalid.invalid && documentvalid.dirty ? 'is-invalid ' : ''
+            "
+          />
+          <div
+            *ngIf="documentvalid.invalid && documentvalid.dirty"
+            class="invalid-feedback"
+          >
+            Please upload a document.
+          </div>
+
+          <div *ngIf="fileSizeError" class="error-message">
+            File size exceeds the allowed limit.
+          </div>
+
+          <div *ngIf="fileTypeError" class="error-message">
+            Invalid file type. Please select a PDF, DOC, or DOCX file.
+          </div>
+
+          <br />
+
+          <input
+            type="submit"
+            value="Upload"
+            [disabled]="form.invalid"
+            class="my-3"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card-deck col-md-5">
+      <div *ngFor="let document of documents" class="card my-3">
+        <div class="card-header bg-dark text-white">
+          <h5 class="card-title">Document Details</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <i class="fas fa-id-badge"></i> : {{ document.id }}
+          </p>
+          <p class="card-text">
+            <i class="far fa-file-alt"></i> : {{ document.documentName }}
+          </p>
+          <p class="card-text">
+            <i class="far fa-file-alt"></i> : {{ document.documentFile }}
+            <button class="mt-3"
+              class="btn btn-primary"
+              (click)="togglePdfViewer(document.id)"
+            >
+              View PDF
+            </button>
+          </p>
+          <div
+            *ngIf="showPdf && selectedDocumentId === document.id"
+            class="mt-3"
+          >
+            <pdf-viewer
+              src="{{
+                'http://localhost:8080/api/DocumentType/downloadFile/' +
+                  document.id
+              }}"
+              [render-text]="true"
+              [original-size]="false"
+              style="width: 350px; height: 350px"
+            ></pdf-viewer>
+          </div>
+
+          <p class="card-text">
+            <i class="fas fa-info-circle"></i> :
+            <span
+              class="badge text-black"
+              [ngClass]="{
+                'badge-danger': !document.isBoolean,
+                'badge-success': document.isBoolean
+              }"
+            >
+              {{ document.isBoolean ? "Approved" : "Not Approved" }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

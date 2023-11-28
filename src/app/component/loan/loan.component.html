@@ -1,0 +1,153 @@
+<!-- Button trigger modal -->
+
+
+<div class="d-flex justify-content-end">
+  <button
+    type="button"
+    class="btn btn-primary my-5"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    New Application +
+  </button>
+</div>
+
+ 
+
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Loan Form</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form #loanForm="ngForm" (ngSubmit)="onSubmit(loanForm)">
+          <div class="my-3">
+           
+            <select
+              id="myDropdown"
+              name="loanType"
+              [(ngModel)]="loanType"
+              required
+              #selectedOptionNgModel="ngModel"
+              [ngClass]="
+                selectedOptionNgModel.invalid && selectedOptionNgModel.dirty
+                  ? 'is-invalid '
+                  : ''
+              "
+            >
+              <div
+                *ngIf="selectedOptionNgModel.invalid"
+                class="invalid-feedback"
+              >
+                please select the option
+              </div>
+
+              >
+              <option value="" disabled>Select an option</option>
+              <option value="GoldLoan">Gold Loan</option>
+              <option value="BussinessLoan">Bussiness Loan</option>
+              <option value="CarLoan">CarLoan</option>
+            </select>
+
+            <!-- Validation message -->
+            <div
+              *ngIf="
+                selectedOptionNgModel.invalid &&
+                (selectedOptionNgModel.dirty || selectedOptionNgModel.touched)
+              "
+            >
+              <div *ngIf="selectedOptionNgModel" class="invalid-feedback">
+                Please select an option.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Loan Amount</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="nameHelp"
+              name="amount"
+              [(ngModel)]="amount"
+              ngModel
+              required
+              pattern="[0-9]+(\.[0-9]{1,2})?"
+              #balancevalid="ngModel"
+              [ngClass]="
+                balancevalid.invalid && balancevalid.dirty ? 'is-invalid ' : ''
+              "
+            />
+            <div
+              *ngIf="balancevalid.invalid && balancevalid.dirty"
+              class="invalid-feedback"
+            >
+              Please enter a valid Amount
+            </div>
+          </div>
+
+         
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="loanForm.invalid"
+          >
+            Save changes
+          </button>
+        </form>
+     
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="row">
+ 
+    <div class="card-deck col-md-5">
+      <div *ngFor="let loan of loans" class="card my-3">
+        <div class="card-header bg-dark text-white">
+          <h5 class="card-title">Loan Details</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text"> <i class="fas fa-id-badge"></i> : {{ loan.id }}</p>
+          <p class="card-text">  <i class="fas fa-user"></i> : {{ loan.username }}</p>
+          <p class="card-text"><i class="fas fa-dollar-sign"></i> : {{ loan.amount }}</p>
+          <p class="card-text"><i class="fas fa-file-alt"></i> : {{ loan.loanType }}</p>
+          <p class="card-text ">
+            <i class="fas fa-info-circle"></i> :
+            <span
+              class="badge text-black"
+              [ngClass]="{
+                'badge-danger': !loan.approved,
+                'badge-success': loan.approved
+              }"
+            >
+              {{ loan.approved ? "Approved" : "Not Approved" }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+ 
+</div>
+
+
+
+
+

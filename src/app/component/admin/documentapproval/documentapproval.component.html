@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyF9RH4uE3JqDk9mPKRiiLl2Q5f7Nfexl"
+      crossorigin="anonymous"
+    />
+    <title>Document Approval System</title>
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <h2 class="mb-4">Document Approval</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Document Name</th>
+            <th>DocumentFile</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let document of documents">
+            <td>{{ document.id }}</td>
+            <td>{{ document.documentName }}</td>
+            <td>
+              {{ document.documentFile }}
+              <button class="mt-3"
+              class="btn btn-primary"
+              (click)="togglePdfViewer(document.id)"
+            >
+              View PDF
+            </button>
+            
+              <pdf-viewer  *ngIf="showPdf && selectedDocumentId === document.id"
+                src="{{
+                  'http://localhost:8080/api/DocumentType/downloadFile/' +
+                    document.id
+                }}"
+                [render-text]="true"
+                [original-size]="false"
+                style="width: 350px; height: 350px"
+              ></pdf-viewer>
+            </td>
+     
+
+            <td>
+              <button
+                class="btn btn-success"
+                (click)="approvedocument(document.id)"
+              >
+                Approve
+              </button>
+            
+            </td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

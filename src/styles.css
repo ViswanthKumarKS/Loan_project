@@ -1,1 +1,197 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Roboto+Mono&family=Roboto+Slab&display=swap');
+
+:root {
+  --primary-50:   #cae8f2;
+  --primary-100: #fef3c7;
+  --primary-300: #A09480;
+  --primary-500:black;
+  --primary-600: #d97706;
+  --primary-700: #b45309;
+  --primary-900: #78350f;
+  --secondary-100: #3457a7;
+  --secondary-500: #64748b;
+  --secondary-900: #0f172a;
+  --red-100: #fee2e2;
+  --red-300: #fca5a5;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+  --brown-900:#f4e1d2;
+  --green-300: #bef264;
+  --green-500: #84cc16;
+  --green-700: #4d7c0f;
+  --border-radius: 22px;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+font-family: 'Roboto Mono', monospace;
+font-family: 'Roboto Slab', serif;
+background-color: var(--primary-50);
+
+}
+
+/* text */
+.text-primary {
+  color: var(--secondary-100) !important;
+}
+
+/* background */
+.bg-primary {
+  background-color: #c5aa6a !important;
+}
+
+/* button */
+.btn {
+  border-radius: var(--border-radius);
+}
+
+.btn-primary {
+  color: var(--secondary-100);
+  background: var(--primary-500);
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: var(--secondary-100);
+  background: var(--primary-600) !important;
+  border: none;
+}
+
+.btn-danger {
+  color: var(--secondary-100);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-danger:hover {
+  color: var(--secondary-100);
+  background: var(--red-700);
+  border: none;
+}
+
+.btn-success {
+  color: var(--secondary-100);
+  background: var(--green-500);
+  border: none;
+}
+
+.btn-success:hover {
+  color: var(--secondary-100);
+  background: var(--green-700);
+  border: none;
+}
+
+/* form */
+.form-control,
+.form-control:focus {
+  color: var(--primary-500);
+  background-color: var(--bs-body-bg);
+  border-color: var(--primary-500);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--primary-300);
+}
+
+.form-label {
+  color: var(--primary-500);
+ 
+}
+
+.border {
+  border-right-color: var(--primary-300) !important;
+}
+
+/* background color */
+.bg-body-tertiary {
+  background-color: var(--brown-900) !important;
+}
+
+/* Custom */
+.error {
+  background-color: var(--red-100);
+  margin: 8px 0px;
+  padding: 2px 6px;
+  display: block;
+  color: var(--red-700);
+  border-radius: var(--border-radius);
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sideBarActive,
+.sideBarActive > a,
+.sideBarActive > a:hover,
+.sideBarActive > a:active {
+  color: var(--primary-500);
+  background-color: var(--primary-50) !important;
+  padding: 8px;
+}
+
+.sideBarItem,
+.sideBarItem > a {
+  color: var(--primary-500);
+  padding: 8px;
+}
+
+.sideBarItem > a:hover {
+  color: #50394c;
+}
+
+.sideBarActive > .fa-solid {
+  color: #50394c;
+ 
+}
+
+.sideBarItem:hover {
+  color: var(--primary-500);
+  background-color: var(--primary-50);
+  padding: 8px;
+}
+
+/* Icon */
+.fa-solid {
+  color: #4040a1;
+}
+
+.loader {
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+
+.lottie-loader {
+  width: 150px !important;
+  height: 150px !important;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+#username{
+  border-radius: 20 px;
+}
+
+
+
+
+}
