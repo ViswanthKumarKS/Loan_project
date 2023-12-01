@@ -30,29 +30,40 @@
 ![Screenshot (8)](https://github.com/ViswanthKumarKS/Loan_project/assets/145537662/b6c4e6dd-6a20-4e2e-a74d-6535c0bd7b3e)
 ![Screenshot (9)](https://github.com/ViswanthKumarKS/Loan_project/assets/145537662/909264f9-10c3-4da0-9530-828fdde33846)
 
-🔗 Links
+# Challenges
 
-Challenges
+🔴 Regulatory Compliance:
 
+   Challenge: Adhering to constantly evolving financial regulations and compliance standards.
+   
+   Solution: Regularly update the system to comply with the latest regulations and work closely with legal experts to ensure compliance.
+🔴 Data Security and Privacy:
+  
+  Challenge: Safeguarding sensitive customer information and financial data from unauthorized access or breaches.
+  
+  Solution: Implement robust encryption, access controls, and regularly conduct security audits. Adhere to data protection regulations like GDPR or HIPAA.
 
-🔴 Point one
-🔴 Point two
-🔴 Point three
-🔴 Point four
-🔴 Point five
-Hardest Errors
+# Hardest Errors
 
-🚩 Error 1
-🚩 Error 2
-🚩 Error 3
-🚩 Error 4
-🚩 Error 5
-Repository Link
+🚩 Data Entry Errors
+
+🚩 Security Vulnerabilities
+
+🚩 System Downtime
+
+🚩 Fraudulent Activities
 
 🔗 Repo link 
-MySQL Schema
+# Reposititory link of the front end:
+https://github.com/ViswanthKumarKS/Loan_project
+# Reposititory link of the back end:
+https://github.com/ViswanthKumarKS/Loan_Project_Backend
 
 👉 Image of schema 
-Demo Video Url
+![Screenshot (10)](https://github.com/ViswanthKumarKS/Loan_project/assets/145537662/b8c15304-3e81-41e2-98ad-530443559f94)
+![Screenshot (11)](https://github.com/ViswanthKumarKS/Loan_project/assets/145537662/2e274cb8-bfca-40a3-97ab-21a5e9b87686)
+
+# Demo Video Url
 
 🔗 url of demo video
+Link:https://drive.google.com/file/d/1PI2C8yuTIdaN8ce_6u0pIUFRCoU4Fd7D/view?usp=sharing
