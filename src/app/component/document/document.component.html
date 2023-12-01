@@ -1,15 +1,22 @@
 <!-- Button trigger modal -->
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-center">
+  <div *ngIf="!documents.length && !showAnimation" class="lottie-container">
+    <ng-lottie [options]="options" width="1200px" height="450px"></ng-lottie>
+  </div>
+</div>
+<div
+  class="my-3 d-flex justify-content-center"
+ 
+>
   <button
     type="button"
-    class="btn btn-primary my-5"
+    class="btn btn-primary"
     data-bs-toggle="modal"
     data-bs-target="#exampleModal"
   >
     New Document +
   </button>
 </div>
-
 <div
   class="modal fade"
   id="exampleModal"
@@ -20,7 +27,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Document Form</h5>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Loan Form</h1>
         <button
           type="button"
           class="btn-close"
@@ -73,6 +80,7 @@
             value="Upload"
             [disabled]="form.invalid"
             class="my-3"
+            data-bs-dismiss="modal"
           />
         </form>
       </div>
@@ -80,58 +88,57 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-12">
-    <div class="card-deck col-md-5">
-      <div *ngFor="let document of documents" class="card my-3">
-        <div class="card-header bg-dark text-white">
-          <h5 class="card-title">Document Details</h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <i class="fas fa-id-badge"></i> : {{ document.id }}
-          </p>
-          <p class="card-text">
-            <i class="far fa-file-alt"></i> : {{ document.documentName }}
-          </p>
-          <p class="card-text">
-            <i class="far fa-file-alt"></i> : {{ document.documentFile }}
-            <button class="mt-3"
-              class="btn btn-primary"
-              (click)="togglePdfViewer(document.id)"
-            >
-              View PDF
-            </button>
-          </p>
-          <div
-            *ngIf="showPdf && selectedDocumentId === document.id"
+<div class="container mt-5" *ngIf="documents.length > 0">
+  <h1 class="face mt-4">Documents Details</h1>
+  <table class="table table-bordered mt-3">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Document Name</th>
+        <th scope="col">Document File Name</th>
+        <th scope="col">View PDF</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let document of documents">
+      <tr
+        [class.table-primary]="document.boolean"
+        [class.table-secondary]="!document.boolean"
+      >
+        <th>{{ document.id }}</th>
+        <td>{{ document.documentName }}</td>
+        <td>{{ document.documentFile }}</td>
+        <td>
+          <button
             class="mt-3"
+            class="btn btn-primary"
+            (click)="togglePdfViewer(document.id)"
           >
-            <pdf-viewer
-              src="{{
-                'http://localhost:8080/api/DocumentType/downloadFile/' +
-                  document.id
-              }}"
-              [render-text]="true"
-              [original-size]="false"
-              style="width: 350px; height: 350px"
-            ></pdf-viewer>
-          </div>
-
-          <p class="card-text">
-            <i class="fas fa-info-circle"></i> :
-            <span
-              class="badge text-black"
-              [ngClass]="{
-                'badge-danger': !document.isBoolean,
-                'badge-success': document.isBoolean
-              }"
-            >
-              {{ document.isBoolean ? "Approved" : "Not Approved" }}
-            </span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+            View PDF
+          </button>
+          <pdf-viewer
+            *ngIf="showPdf"
+            src="{{
+              'http://localhost:8080/api/DocumentType/downloadFile/' +
+                document.id
+            }}"
+            [render-text]="true"
+            [original-size]="false"
+            style="width: 350px; height: 350px"
+          ></pdf-viewer>
+        </td>
+        <td>
+          <span
+            class="badge text-black"
+            [ngClass]="{
+              'badge-danger': !document.boolean,
+              'badge-success': document.boolean
+            }"
+          >
+            {{ document.boolean ? "Approved  &#10004;" : "Not Approved &#10008;" }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

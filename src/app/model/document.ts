@@ -1,6 +1,6 @@
 export interface Document {
   id: number;
   documentName:string;
-  isBoolean: boolean;
+  boolean: boolean;
   documentFile:string;
 }

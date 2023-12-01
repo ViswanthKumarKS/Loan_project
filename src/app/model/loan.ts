@@ -7,4 +7,7 @@ export interface Loan {
   loanType: String;
   user_id?: number;
   username: String;
+
 }
+
+

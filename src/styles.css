@@ -11,22 +11,24 @@
   --secondary-100: #3457a7;
   --secondary-500: #64748b;
   --secondary-900: #0f172a;
+  --White-100:White;
   --red-100: #fee2e2;
   --red-300: #fca5a5;
   --red-500: #ef4444;
   --red-700: #b91c1c;
-  --brown-900:#f4e1d2;
-  --green-300: #bef264;
-  --green-500: #84cc16;
+  --brown-900:#a2836e;
+  --green-300: #d9f5ac;
+  --green-500: #a4cb68;
   --green-700: #4d7c0f;
-  --border-radius: 22px;
+  --green-900: 
+  --border-radius: 30px;
 }
 
 body {
   font-family: 'Noto Sans', sans-serif;
 font-family: 'Roboto Mono', monospace;
 font-family: 'Roboto Slab', serif;
-background-color: var(--primary-50);
+background-color: #cdd4c2;
 
 }
 
@@ -37,7 +39,7 @@ background-color: var(--primary-50);
 
 /* background */
 .bg-primary {
-  background-color: #c5aa6a !important;
+  background-color:var(--green-500) !important;
 }
 
 /* button */
@@ -46,9 +48,11 @@ background-color: var(--primary-50);
 }
 
 .btn-primary {
-  color: var(--secondary-100);
-  background: var(--primary-500);
-  border: none;
+  color:black;
+  background:rgb(173, 242, 173);
+  text-transform: uppercase;
+  transition: color 0.3s ease; 
+  
 }
 
 .btn-primary:hover,
@@ -90,11 +94,12 @@ background-color: var(--primary-50);
   background-color: var(--bs-body-bg);
   border-color: var(--primary-500);
   outline: 0;
-  box-shadow: 0 0 0 0.25rem var(--primary-300);
+ 
 }
 
 .form-label {
   color: var(--primary-500);
+ 
  
 }
 
@@ -104,7 +109,7 @@ background-color: var(--primary-50);
 
 /* background color */
 .bg-body-tertiary {
-  background-color: var(--brown-900) !important;
+  background-color: var(--green-500) !important;
 }
 
 /* Custom */
@@ -131,7 +136,7 @@ background-color: var(--primary-50);
 
 .sideBarItem,
 .sideBarItem > a {
-  color: var(--primary-500);
+  color: var(--White-100) !important;
   padding: 8px;
 }
 
@@ -152,7 +157,7 @@ background-color: var(--primary-50);
 
 /* Icon */
 .fa-solid {
-  color: #4040a1;
+  color: white;
 }
 
 .loader {
@@ -194,4 +199,19 @@ height: 100%;
 
 
 
+
+}  .shadowed-label {
+  font-size: 24px; /* Set your desired font size */
+  color: #333; /* Set your desired text color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adjust the shadow values as needed */
+}
+.shadowed-input {
+  border: 2px solid #ccc; /* Set the border width and color for the input box */
+      border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+      padding: 8px; /* Optional: Add padding for better spacing */
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); Optional: Add padding for better spacing
+}
+.custom-lottie-container {
+  height: 300px;
+  width: 400px;
 }

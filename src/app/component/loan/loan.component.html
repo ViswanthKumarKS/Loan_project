@@ -1,16 +1,28 @@
-<!-- Button trigger modal -->
+<link rel="stylesheet" href="/src/app/component/loan/loan.component.css">
+
+<div class="d-flex justify-content-center">
+ 
+  <div *ngIf="!loans.length && !showAnimation" class="lottie-container">
+    <ng-lottie [options]="options" width="1200px" height="450px"></ng-lottie>
+  </div>
+</div>
+<div
+  class="my-3 d-flex justify-content-center"
+  *ngIf="!isLoanCreated && !loans.length"
+>
 
 
-<div class="d-flex justify-content-end">
+
   <button
     type="button"
-    class="btn btn-primary my-5"
+    class="btn btn-primary"
     data-bs-toggle="modal"
     data-bs-target="#exampleModal"
   >
-    New Application +
+    New Loan Application +
   </button>
 </div>
+
 
  
 
@@ -81,7 +93,7 @@
             <label class="form-label">Loan Amount</label>
             <input
               type="text"
-              class="form-control"
+              class=" shadowed-input "
               id="exampleInputEmail1"
               aria-describedby="nameHelp"
               name="amount"
@@ -107,8 +119,9 @@
             type="submit"
             class="btn btn-primary"
             [disabled]="loanForm.invalid"
+            data-bs-dismiss="modal"
           >
-            Save changes
+          Save Details    
           </button>
         </form>
      
@@ -117,35 +130,42 @@
   </div>
 </div>
 
-  <div class="row">
- 
-    <div class="card-deck col-md-5">
-      <div *ngFor="let loan of loans" class="card my-3">
-        <div class="card-header bg-dark text-white">
-          <h5 class="card-title">Loan Details</h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text"> <i class="fas fa-id-badge"></i> : {{ loan.id }}</p>
-          <p class="card-text">  <i class="fas fa-user"></i> : {{ loan.username }}</p>
-          <p class="card-text"><i class="fas fa-dollar-sign"></i> : {{ loan.amount }}</p>
-          <p class="card-text"><i class="fas fa-file-alt"></i> : {{ loan.loanType }}</p>
-          <p class="card-text ">
-            <i class="fas fa-info-circle"></i> :
-            <span
-              class="badge text-black"
-              [ngClass]="{
-                'badge-danger': !loan.approved,
-                'badge-success': loan.approved
-              }"
-            >
-              {{ loan.approved ? "Approved" : "Not Approved" }}
-            </span>
-          </p>
-        </div>
-      </div>
+<div class="container mt-3" *ngIf="loans.length > 0">
+<h1 class="face mt-4">Loan Details</h1>
+<table  class="table table-bordered mt-3" >
+  <thead  class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">UserName</th>
+      <th scope="col">LoanAmount</th>
+      <th scope="col">LoanType</th>
+      <th scope="col">Status</th>
+
+    </tr>
+  </thead>
+  <tbody *ngFor="let loan of loans" >
+    <tr [class.table-primary]="loan.approved" [class.table-secondary]="!loan.approved">
+      <th >{{ loan.id }}</th>
+      <td> {{ loan.username }}</td>
+      <td>₹ {{ loan.amount }}</td>
+      <td>{{ loan.loanType }}</td>
+      <td>
+        <span
+        class="badge text-black"
+        [ngClass]="{
+          'badge-danger': !loan.approved,
+          'badge-success': loan.approved,
+          
+        }"
+      >
+      {{ loan.approved ? "Approved &#10004;" : "Not Approved &#10008;" }}
+      </span>
+
+      </td>
+    </tr>
+    </tbody>
+    </table>
     </div>
- 
-</div>
 
 
 

@@ -5,6 +5,7 @@ import { AnimationOptions } from 'ngx-lottie';
 import { AppResponse } from 'src/app/model/appResponse';
 import { Register } from 'src/app/model/register';
 import { AuthService } from 'src/app/service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -15,12 +16,12 @@ export class RegisterComponent {
   options: AnimationOptions = {
     path: '/assets/auth.json',
   };
-  toastr: any;
+ 
 
 
 
   constructor(
-    private registerService: AuthService,private router:Router
+    private registerService: AuthService,private router:Router,private toastr:ToastrService
   ) {}
   nameRef:String='';
   password:String='';
@@ -37,10 +38,13 @@ export class RegisterComponent {
     this.registerService.register(newregister).subscribe({
       next:(response:AppResponse)=>{
         this.registers.push(response.data);
-       
-
+        this.toastr.success("registered successfully")
         this.router.navigate(['/login']);
 
+        
+      
+
+     
       }
      
     

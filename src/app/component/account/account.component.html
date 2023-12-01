@@ -1,279 +1,305 @@
-
-  <div class="my-5 d-flex justify-content-end">
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      New Account+
-    </button>
-   
-
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
+<div class="d-flex justify-content-center">
+ 
+  <div *ngIf="!accounts.length && !showAnimation" class="lottie-container">
+    <ng-lottie [options]="options" width="500px" height="500px"></ng-lottie>
+  </div>
+</div>
+<div
+  class="my-3 d-flex justify-content-center"
+  *ngIf="!isAccountCreated && !accounts.length"
+>
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    data-bs-dismiss="modal"
   >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Account Form</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <section class="loan-deatils-area bg_disable">
-            <div class="container">
-              <form #accountForm="ngForm" (ngSubmit)="onSubmit(accountForm)">
-                <div class="row gy-4">
-                  <div class="col-md-6">
-                    <label class="form-label">Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="name"
-                      aria-describedby="nameHelp"
-                      name="name"
-                      [(ngModel)]="name"
-                      ngModel
-                      required
-                      minlength="3"
-                      maxlength="15"
-                      #Namevaild="ngModel"
-                      [ngClass]="
-                        Namevaild.invalid && Namevaild.dirty
-                          ? 'is-invalid '
-                          : ''
-                      "
-                    />
-                    <div *ngIf="Namevaild.invalid" class="invalid-feedback">
-                      please enter the name min 3 characters
-                    </div>
-                  </div>
+    New Account+
+  </button>
+</div>
 
-                  <div class="col-md-6">
-                    <label class="form-label">Account Number</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="exampleInputPassword1"
-                      name="accountNumber"
-                      [(ngModel)]="accountnumber"
-                      ngModel
-                      required
-                      pattern="[0-9]{1,10}"
-                      #accNumValid="ngModel"
-                      [ngClass]="
-                        accNumValid.invalid && accNumValid.dirty
-                          ? 'is-invalid '
-                          : ''
-                      "
-                    />
-                    <div
-                      *ngIf="accNumValid.invalid && accNumValid.dirty"
-                      class="invalid-feedback"
-                    >
-                      Please enter a valid account number.
-                    </div>
-                  </div>
-
-                  <div class="col-md-12">
-                    <label class="form-label">Address</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="address"
-                      aria-describedby="nameHelp"
-                      name="address"
-                      [(ngModel)]="address"
-                      ngModel
-                      required
-                      minlength="3"
-                      #addressvaild="ngModel"
-                      [ngClass]="
-                        addressvaild.invalid && addressvaild.dirty
-                          ? 'is-invalid '
-                          : ''
-                      "
-                    />
-                    <div *ngIf="addressvaild.invalid" class="invalid-feedback">
-                      please enter the address
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label">City</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="city"
-                      aria-describedby="nameHelp"
-                      name="city"
-                      [(ngModel)]="city"
-                      ngModel
-                      required
-                      minlength="3"
-                      #cityvaild="ngModel"
-                      [ngClass]="
-                        cityvaild.invalid && cityvaild.dirty
-                          ? 'is-invalid '
-                          : ''
-                      "
-                    />
-                    <div *ngIf="cityvaild.invalid" class="invalid-feedback">
-                      please enter the city
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label">State</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="state"
-                      aria-describedby="nameHelp"
-                      name="state"
-                      [(ngModel)]="state"
-                      ngModel
-                      required
-                      minlength="3"
-                      #statevaild="ngModel"
-                      [ngClass]="
-                        statevaild.invalid && statevaild.dirty
-                          ? 'is-invalid '
-                          : ''
-                      "
-                    />
-                    <div *ngIf="statevaild.invalid" class="invalid-feedback">
-                      please enter the state
-                    </div>
-                  </div>
-
-                  <div class="col-md-5">
-                    <label class="form-label">Balance</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="nameHelp"
-                      name="balance"
-                      [(ngModel)]="balance"
-                      ngModel
-                      required
-                      pattern="[0-9]+(\.[0-9]{1,2})?"
-                      #balancevalid="ngModel"
-                      [ngClass]="
-                        balancevalid.invalid && balancevalid.dirty
-                          ? 'is-invalid '
-                          : ''
-                      "
-                    />
-                    <div
-                      *ngIf="balancevalid.invalid && balancevalid.dirty"
-                      class="invalid-feedback"
-                    >
-                      Please enter a valid balance.
-                    </div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Account Form</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <section class="loan-deatils-area bg_disable">
+          <div class="container">
+            <form #accountForm="ngForm" (ngSubmit)="onSubmit(accountForm)">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <label class="form-label ">Name</label>
+                  <input
+                    type="text"
+                    class=" shadowed-input  "
+                    id="name"
+                    aria-describedby="nameHelp"
+                    name="name"
+                    [(ngModel)]="name"
+                    ngModel
+                    required
+                    minlength="3"
+                    maxlength="15"
+                    #Namevaild="ngModel"
+                    [ngClass]="
+                      Namevaild.invalid && Namevaild.dirty ? 'is-invalid ' : ''
+                    "
+                  />
+                  <div *ngIf="Namevaild.invalid" class="invalid-feedback">
+                    please enter the name min 3 characters
                   </div>
                 </div>
-                <div class="row mt-60">
-                  <div class="col-md-12 my-5">
-                    <div
-                      class="nav-btn d-flex flex-wrap justify-content-center"
-                    >
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        [disabled]="accountForm.invalid"
-                        data-bs-dismiss="modal"
-                      >
-                        Save
-                      </button>
-                    </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Account Number</label>
+                  <input
+                    type="text"
+                    class=" shadowed-input "
+                    id="exampleInputPassword1"
+                    name="accountNumber"
+                    [(ngModel)]="accountnumber"
+                    ngModel
+                    required
+                    pattern="[0-9]{1,10}"
+                    #accNumValid="ngModel"
+                    [ngClass]="
+                      accNumValid.invalid && accNumValid.dirty
+                        ? 'is-invalid '
+                        : ''
+                    "
+                  />
+                  <div
+                    *ngIf="accNumValid.invalid && accNumValid.dirty"
+                    class="invalid-feedback"
+                  >
+                    Please enter a valid account number.
                   </div>
                 </div>
-              </form>
-            </div>
-          </section>
-        </div>
+
+                <div class="col-md-12">
+                  <label class="form-label">Address</label>
+                  <input
+                    type="text"
+                    class=" shadowed-input "
+                    id="address"
+                    aria-describedby="nameHelp"
+                    name="address"
+                    [(ngModel)]="address"
+                    ngModel
+                    required
+                    minlength="3"
+                    #addressvaild="ngModel"
+                    [ngClass]="
+                      addressvaild.invalid && addressvaild.dirty
+                        ? 'is-invalid '
+                        : ''
+                    "
+                  />
+                  <div *ngIf="addressvaild.invalid" class="invalid-feedback">
+                    please enter the address
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">City</label>
+                  <input
+                    type="text"
+                    class=" shadowed-input "
+                    id="city"
+                    aria-describedby="nameHelp"
+                    name="city"
+                    [(ngModel)]="city"
+                    ngModel
+                    required
+                    minlength="3"
+                    #cityvaild="ngModel"
+                    [ngClass]="
+                      cityvaild.invalid && cityvaild.dirty ? 'is-invalid ' : ''
+                    "
+                  />
+                  <div *ngIf="cityvaild.invalid" class="invalid-feedback">
+                    please enter the city
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">State</label>
+                  <input
+                    type="text"
+                    class=" shadowed-input "
+                    id="state"
+                    aria-describedby="nameHelp"
+                    name="state"
+                    [(ngModel)]="state"
+                    ngModel
+                    required
+                    minlength="3"
+                    #statevaild="ngModel"
+                    [ngClass]="
+                      statevaild.invalid && statevaild.dirty
+                        ? 'is-invalid '
+                        : ''
+                    "
+                  />
+                  <div *ngIf="statevaild.invalid" class="invalid-feedback">
+                    please enter the state
+                  </div>
+                </div>
+
+                <div class="col-md-5">
+                  <label class="form-label">Balance</label>
+                  <input
+                    type="text"
+                    class=" shadowed-input "
+                    id="exampleInputEmail1"
+                    aria-describedby="nameHelp"
+                    name="balance"
+                    [(ngModel)]="balance"
+                    ngModel
+                    required
+                    pattern="[0-9]+(\.[0-9]{1,2})?"
+                    #balancevalid="ngModel"
+                    [ngClass]="
+                      balancevalid.invalid && balancevalid.dirty
+                        ? 'is-invalid '
+                        : ''
+                    "
+                  />
+                  <div
+                    *ngIf="balancevalid.invalid && balancevalid.dirty"
+                    class="invalid-feedback"
+                  >
+                    Please enter a valid balance.
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-60">
+                <div class="col-md-12 my-5">
+                  <div class="nav-btn d-flex flex-wrap justify-content-center">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      [disabled]="accountForm.invalid"
+                      data-bs-dismiss="modal"
+                    >
+                      Save Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
       </div>
     </div>
   </div>
 </div>
+<style>
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
 
+  .table, .table th, .table td {
+    border: 1px solid #dee2e6;
+  }
 
-<div class="d-flex">
+  .thead-dark th {
+    background-color: #343a40;
+    color: #fff;
+  }
 
+  .table th, .table td {
+    padding: 8px;
+    text-align: left;
+  }
 
+  .table i {
+    margin-right: 8px;
+  }
+</style>
 
-<div class="row">
-  <div class="card-deck">
-    <div class="d-flex vw-500">
-    <div class="col-6">
-      <div *ngFor="let account of accounts" class="card mb-3">
-        
-        <div class="card-header bg-dark text-white">
-          <h5 class="card-title ">Account Details</h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <strong><i class="fas fa-user"></i> : </strong> {{ account.name }}
-          </p>
-          <p class="card-text">
-            <strong><i class="fas fa-id-card"></i> : </strong> {{ account.id }}
-          </p>
-          <p class="card-text">
-            <strong><i class="fas fa-user"></i> : </strong>
-            {{ account.username }}
-          </p>
-          <p class="card-text">
-            <strong><i class="fas fa-credit-card"></i> : </strong>
-            {{ account.acc_no }}
-          </p>
-          <p class="card-text">
-            <strong><i class="fas fa-balance-scale"></i> : </strong>
-            {{ account.balance }}
-          </p>
-        </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <!-- Account Details Table -->
+    <div *ngFor="let account of accounts" class="col-md-6 my-5">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th colspan="2">Account Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><i class="fas fa-user"></i> Name:</td>
+            <td>{{ account.name }}</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-id-card"></i> ID:</td>
+            <td>{{ account.id }}</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-user"></i> Username:</td>
+            <td>{{ account.username }}</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-credit-card"></i> Account No:</td>
+            <td>{{ account.acc_no }}</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-balance-scale"></i> Balance:</td>
+            <td>₹ {{ account.balance }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-6 mx-5">
-      <div *ngFor="let account of accounts" class="card mb-3">
-        <div class="card-header bg-dark text-white">
-          <h5 class="card-title">Address Details</h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <strong><i class="fas fa-map-marker-alt"></i> : </strong>
-            {{ account.address }}
-          </p>
-          <p class="card-text">
-            <strong><i class="fas fa-flag"></i> : </strong> {{ account.state }}
-          </p>
-          <p class="card-text">
-            <strong><i class="fas fa-city"></i> : </strong> {{ account.city }}
-          </p>
-        </div>
-      </div>
-      
-    </div>
+
+    <!-- Address Details Table -->
+    <div *ngFor="let account of accounts" class="col-md-6 my-5">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th colspan="2">Address Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><i class="fas fa-map-marker-alt"></i> Address:</td>
+            <td>{{ account.address }}</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-flag"></i> State:</td>
+            <td>{{ account.state }}</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-city"></i> City:</td>
+            <td>{{ account.city }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-<div class="col-lg-6 col-xl-4 offset-xl-1 h-75 w-50">
-  <ng-lottie [options]="options"  *ngIf="accountCreated"></ng-lottie>
-</div>
-</div>
-<!-- <div *ngIf="accountCreated ">
 
-  
-</div> -->
+<div *ngIf="accounts.length && showAnimation" class="lottie-container">
+  <ng-lottie [options]="approved" width="500px" height="500px"></ng-lottie>
+</div>
+
+

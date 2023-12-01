@@ -13,7 +13,7 @@ import { StorageService } from 'src/app/service/storage.service';
 })
 export class DocumentComponent implements OnInit {
   options: AnimationOptions = {
-    path: '/assets/document.json',
+    path: '/assets/noaccount.json',
   };
 
   documents: Document[] = [];
@@ -21,6 +21,8 @@ export class DocumentComponent implements OnInit {
 
   file: any = '';
   isBoolean: boolean = false;
+  showAnimation = false;
+ 
 
   fileSizeLimit = 5242880; // 5 MB in bytes
   allowedFileTypes = ['.pdf', '.doc', '.docx'];
@@ -32,7 +34,7 @@ export class DocumentComponent implements OnInit {
     const fileInput = event.target;
     if (fileInput && fileInput.files.length > 0) {
       this.file = fileInput.files[0];
-
+     
       // console.log('Selected file',this.file);
     }
   }
@@ -44,13 +46,17 @@ export class DocumentComponent implements OnInit {
 
   user: AppUser = this.storageService.getLoggedInUser();
   showPdf: boolean = false; 
-  selectedDocumentId: number | null = null; 
+ 
 
   ngOnInit(): void {
     this.documentService.getdocumentdetails(this.user.id).subscribe({
       next: (response: AppResponse) => {
+        
         this.documents.push(response.data);
+        this.showAnimation = !this.documents.length;
+       
         console.log(this.documents);
+    
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
@@ -75,6 +81,8 @@ export class DocumentComponent implements OnInit {
     this.documentService.uploadDocument(formData).subscribe({
       next: (response: AppResponse) => {
         this.documents = response.data;
+        this.showAnimation = false;
+       
         const uploadedDocumentId = response.data.id;
         console.log('Document uploaded successfully:', response.data);
       },
@@ -87,6 +95,6 @@ export class DocumentComponent implements OnInit {
   togglePdfViewer(documentId: number): void {
    
     this.showPdf = !this.showPdf;
-    this.selectedDocumentId = this.showPdf ? documentId : null;
+   
   }
 }

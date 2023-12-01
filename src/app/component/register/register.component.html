@@ -8,8 +8,8 @@
         <h2 class="display-4 text-primary">Register</h2>
         <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
           <!-- Username input -->
-          <div class="form-outline mb-3 col-md-8">
-            <label class="form-label" for="username">Name</label>
+          <div class="form-outline  col-md-10">
+            <label class="form-label mb-1" for="username">Name</label>
             <input
               type="text"
               id="Name"
@@ -34,8 +34,8 @@
           </div>
 
           <!-- Name input -->
-          <div class="form-outline mb-3 col-md-8">
-            <label class="form-label" for="name">UserName</label>
+          <div class="form-outline my-4 col-md-10">
+            <label class="form-label mb-2" for="name">UserName</label>
             <input
               type="text"
               id="name"
@@ -51,6 +51,7 @@
               [ngClass]="
                 Namevaild.invalid && Namevaild.dirty ? 'is-invalid ' : ''
               "
+             
             />
             <div *ngIf="Namevaild.invalid" class="invalid-feedback">
               please enter the name min 3 characters
@@ -58,8 +59,8 @@
           </div>
 
           <!-- Password input -->
-          <div class="form-outline mb-3 col-md-8">
-            <label class="form-label" for="password">Password</label>
+          <div class="form-outline my-4 col-md-10">
+            <label class="form-label mb-2" for="password">Password</label>
             <input
               type="password"
               id="password"
@@ -80,7 +81,7 @@
               please enter the name min 3 characters
             </div>
           </div>
-          <div class="mb-3 col-md-8">
+          <div class="mb-4 col-md-10">
             <label for="confirmPassword" class="form-label"
               >Confirm Password</label
             >
@@ -115,10 +116,11 @@
           </div>
 
           <!-- Submit button -->
-          <div class="d-grid gap-2 mb-5">
+          <div class="text-center text-lg-start">
             <button
               type="submit"
-              class="btn btn-primary"
+              class="btn btn-primary  btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem; width: 460px"
               [disabled]="registerForm.invalid"
             >
               Register

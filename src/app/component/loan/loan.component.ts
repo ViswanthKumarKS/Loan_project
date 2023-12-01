@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoanComponent implements OnInit {
   options: AnimationOptions = {
-    path: '/assets/loan.json',
+    path: '/assets/noaccount.json',
   };
   status: string = "Approved"
   loans: Loan[] = [];
@@ -22,6 +22,8 @@ export class LoanComponent implements OnInit {
   amount:number=0;
 
   username:String='';
+  showAnimation = false;
+  isLoanCreated: boolean = false;
  
 
 
@@ -38,6 +40,7 @@ export class LoanComponent implements OnInit {
        
         
         this.loans.push(response.data);
+        this.showAnimation = !this.loans.length;
 
         console.log(response.data);
       },
@@ -64,6 +67,8 @@ export class LoanComponent implements OnInit {
     this.loanService.createloan(newLoan).subscribe({
       next: (response: AppResponse) => {
         this.ngOnInit();
+        this.showAnimation = false;
+        this.isLoanCreated = false; 
        
        
       },

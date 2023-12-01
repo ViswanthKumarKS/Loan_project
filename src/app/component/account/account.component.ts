@@ -14,15 +14,18 @@ import { AnimationOptions } from 'ngx-lottie';
 })
 export class AccountComponent implements OnInit {
   options: AnimationOptions = {
-    path: '/assets/account success.json',
+    path: '/assets/noaccount.json',
+  };
+  approved: AnimationOptions = {
+    path: '/assets/approved.json',
+    renderer: 'svg',
+    autoplay: true,
+    loop: true,
   };
 
- 
   accounts: Account[] = [];
-
-  accountCreated: boolean = false;
-  creatingAccount:boolean=false;
- 
+  showAnimation = false;
+  isAccountCreated: boolean = false;
 
   error: string = '';
   name: string = '';
@@ -33,29 +36,23 @@ export class AccountComponent implements OnInit {
   balance: number = 0;
   username: string = '';
 
-
   constructor(
     private accountService: AccountService,
     private toastr: ToastrService,
     private storageService: StorageService
   ) {}
 
-  showLottie() {
-    this.accountCreated = true;
-  }
   user: AppUser = this.storageService.getLoggedInUser();
 
   ngOnInit(): void {
     this.accountService.getaccountdetails(this.user.id).subscribe({
       next: (response: AppResponse) => {
         this.accounts.push(response.data);
-
+        this.showAnimation = !this.accounts.length;
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
         this.error = message.includes(',') ? message.split(',')[0] : message;
-
-       
       },
     });
   }
@@ -72,29 +69,19 @@ export class AccountComponent implements OnInit {
       username: this.username,
       user_id: userid.id,
     };
-    this.creatingAccount = true;
-  
 
     console.log(newAccount);
 
     this.accountService.createaccount(newAccount).subscribe({
       next: (response: AppResponse) => {
         this.ngOnInit();
-        this.accountCreated = true; 
-        this.toastr.success("account created successfully ")
-      
-      
+        this.showAnimation = false;
+        this.isAccountCreated = false;
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;
         this.error = message.includes(',') ? message.split(',')[0] : message;
-      
       },
     });
-  
-
   }
-
- 
- 
 }

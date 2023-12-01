@@ -11,13 +11,14 @@ import { LoanService } from 'src/app/service/loan.service';
 export class LoaapprovedComponent implements OnInit {
   loans: Loan[] = [];
   error: String = '';
+  router: any;
 
   constructor(private loanService: LoanService) {}
 
   ngOnInit(): void {
     this.loanService.getloanapproval().subscribe({
       next: (response: AppResponse) => {
-        this.loans = response.data;
+        this.loans=response.data;
         console.log(this.loans);
       },
       error: (err) => {
@@ -39,4 +40,10 @@ export class LoaapprovedComponent implements OnInit {
       },
     });
   }
+
+  viewPDF(pdfUrl: string) {
+    // Assuming you have a PdfViewerComponent for viewing PDFs
+    this.router.navigate(['/documentapproval', pdfUrl]);
+  }
+
 }

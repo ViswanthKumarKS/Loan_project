@@ -6,16 +6,18 @@
           <div
             class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start my-5"
           >
-            <p class="lead fw-normal mb-0 me-3">Welcome to Login page</p>
+            <h1 class="lead fw-normal mb-0 me-3">Welcome to Login page</h1>
           </div>
 
-          
-          <div class="form-outline mb-4 col-md-8">
+          <div class="form-outline mb-4 col-md-10">
+            <label class="form-label" for="form3Example3" id="username"
+              >Username</label
+            >
             <input
               type="email"
               id="form-label"
               class="form-control form-control-lg"
-              placeholder="Enter a valid Username"
+              placeholder="Enter valid Username"
               name="username"
               [(ngModel)]="username"
               ngModel
@@ -31,13 +33,11 @@
             <div *ngIf="Namevaild.invalid" class="invalid-feedback">
               please enter the name min 3 characters
             </div>
-            <label class="form-label" for="form3Example3" id="username"
-              >Username</label
-            >
           </div>
 
           <!-- Password input -->
-          <div class="form-outline mb-3 col-md-8">
+          <div class="form-outline mb-3 col-md-10">
+            <label class="form-label" for="form3Example4">Password</label>
             <input
               type="password"
               id="form-label"
@@ -57,31 +57,28 @@
             <div *ngIf="passwordModel.invalid" class="invalid-feedback">
               Please enter a valid password
             </div>
-
-            <label class="form-label" for="form3Example4">Password</label>
           </div>
 
-          <div class="text-center text-lg-start mt-4 pt-2">
+          <div class="text-center text-lg-start mt-4 pt-2 button-radius:22px">
             <button
               type="submit"
-              class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem"
+              class="btn btn-primary btn-lg border rounded-start rounded-end"
+              style="padding-left: 2.5rem; padding-right: 2.5rem; width: 330px"
               router
               Link=" "
               [disabled]="loginForm.invalid"
+              
             >
               Login
             </button>
             <p class="small fw-bold mt-2 pt-1 mb-0">
               Don't have an account?
-              <a href="#!" class="link-danger" routerLink="/register"
-                >Register</a
-              >
+              <a href="#!" routerLink="/register">Register</a>
             </p>
           </div>
         </form>
       </div>
-      <div class="col-md-4 col-lg-6 col-xl-4 offset-xl-1 w-200 h-200">
+      <div class="col-6">
         <ng-lottie [options]="options"></ng-lottie>
       </div>
     </div>

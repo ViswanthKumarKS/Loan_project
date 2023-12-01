@@ -13,7 +13,7 @@ export class DocumentService {
   constructor(private http: HttpClient) {}
 
   getdocumentdetails(id: number) {
-    const appurl = `${urlEndpoint.baseUrl}/DocumentType/detail/`+id;
+    const appurl = `${urlEndpoint.baseUrl}/DocumentType/detail/${id}`;
     return this.http.get<AppResponse>(appurl);
   }
 

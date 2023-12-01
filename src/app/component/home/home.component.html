@@ -14,8 +14,8 @@
       }
 
       header {
-        background-color: #a2836e;
-        color: #fff;
+        background-color: #a4cb68;
+        color:white;
         padding: 20px;
         text-align: center;
       }
@@ -23,6 +23,7 @@
       section {
         padding: 20px;
         text-align: center;
+        padding-bottom: 40px;
       }
 
       .steps {
@@ -38,6 +39,12 @@
         margin: 0 10px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .step:hover {
+        overflow: visible;
+        transform: scale(1.1);
+        z-index: 1;
+        color: black;
       }
 
       footer {
@@ -58,19 +65,34 @@
 
       <div class="steps">
         <div class="step">
-         <img src="/assets/Account.png" width="90px" height="100px"/>
-          <h3 routerLink="/account" >Step 1: Account Detail</h3>
+          <img
+            src="/assets/Account.png"
+            width="90px"
+            height="100px"
+            style="transition: transform 0.8s"
+          />
+          <h3 routerLink="/account">Step 1: Account Detail</h3>
           <p>Provide your account information.</p>
         </div>
 
-        <div class="step">
-          <img src="/assets/Loan.png" width="120px" height="100px"/>
+        <div class="step" style="transition: transform 0.8s">
+          <img
+            src="/assets/Loan.png"
+            width="120px"
+            height="100px"
+            style="transition: transform 0.8s"
+          />
           <h3 routerLink="/loan">Step 2: Loan Details</h3>
           <p>Share details about the loan you are applying for.</p>
         </div>
 
-        <div class="step">
-          <img src="/assets/document.png" width="120px" height="100px"/>
+        <div class="step" style="transition: transform 0.8s">
+          <img
+            src="/assets/document.png"
+            width="120px"
+            height="100px"
+            style="transition: transform 0.8s"
+          />
           <h3 routerLink="/document">Step 3: Document Details</h3>
           <p>Submit necessary documents for verification.</p>
         </div>
