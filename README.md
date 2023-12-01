@@ -37,6 +37,7 @@
    Challenge: Adhering to constantly evolving financial regulations and compliance standards.
    
    Solution: Regularly update the system to comply with the latest regulations and work closely with legal experts to ensure compliance.
+   
 🔴 Data Security and Privacy:
   
   Challenge: Safeguarding sensitive customer information and financial data from unauthorized access or breaches.
