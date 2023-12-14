@@ -6,6 +6,7 @@ import { StorageService } from 'src/app/service/storage.service';
 import { LoanService } from 'src/app/service/loan.service';
 import { AnimationOptions } from 'ngx-lottie';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-loan',
   templateUrl: './loan.component.html',
@@ -29,7 +30,7 @@ export class LoanComponent implements OnInit {
 
 
 
-  constructor(private loanService: LoanService, private storageService: StorageService) {}
+  constructor(private loanService: LoanService, private storageService: StorageService,private toastr:ToastrService) {}
 
   user: AppUser = this.storageService.getLoggedInUser();
 
@@ -69,6 +70,8 @@ export class LoanComponent implements OnInit {
         this.ngOnInit();
         this.showAnimation = false;
         this.isLoanCreated = false; 
+        
+        this.toastr.success('Loan Applied Successfully');
        
        
       },

@@ -12,44 +12,35 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  registers:Register[]=[];
+  registers: Register[] = [];
   options: AnimationOptions = {
     path: '/assets/auth.json',
   };
- 
-
-
 
   constructor(
-    private registerService: AuthService,private router:Router,private toastr:ToastrService
+    private registerService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
   ) {}
-  nameRef:String='';
-  password:String='';
-  error:String='';
-  person: String='';
+  nameRef: String = '';
+  password: String = '';
+  error: String = '';
+  person: String = '';
 
-  onSubmit(form:any){
-    const newregister:Register={
+  onSubmit(form: any) {
+    const newregister: Register = {
       username: this.nameRef,
       password: this.password,
-      name:this.person
+      name: this.person,
     };
     console.log(newregister);
     this.registerService.register(newregister).subscribe({
-      next:(response:AppResponse)=>{
+      next: (response: AppResponse) => {
         this.registers.push(response.data);
-        this.toastr.success("registered successfully")
         this.router.navigate(['/login']);
 
-        
-      
-
-     
-      }
-     
-    
-      });
-    
-
+        this.toastr.success('registered successfully');
+      },
+    });
   }
 }

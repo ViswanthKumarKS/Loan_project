@@ -5,8 +5,9 @@
 <div *ngIf="isLoggedIn" class="row">
   <header class="navbar sticky-top bg-primary p-2 shadow">
     <a class="navbar-brand px-3 text-white">
-      <img src="/assets/logo.png" height="40" />
-      FUNDWAVE
+      <img src="/assets/Fund Wave.png" height="40" width="40" />
+       FUND WAVE 
+    
     </a>
   </header>
 </div>
@@ -89,6 +90,15 @@
             </a>
           </li>
           <li
+          class="nav-item d-flex align-items-center px-4 sideBarItem"
+          routerLink="/loan"
+        >
+          <i class="fa-solid fa-hand-holding-usd"></i>
+          <a class="nav-link d-flex align-items-center" routerLink="/loan"
+            >Loan
+          </a>
+        </li>
+          <li
             class="nav-item d-flex align-items-center px-4 sideBarItem"
             routerLink="document"
           >
@@ -98,15 +108,7 @@
             >
           </li>
 
-          <li
-            class="nav-item d-flex align-items-center px-4 sideBarItem"
-            routerLink="/loan"
-          >
-            <i class="fa-solid fa-hand-holding-usd"></i>
-            <a class="nav-link d-flex align-items-center" routerLink="/loan"
-              >Loan
-            </a>
-          </li>
+       
           <li class="nav-item d-flex align-items-center px-4 sideBarItem">
             <i class="fa-solid fa fa-power-off"></i>
             <a

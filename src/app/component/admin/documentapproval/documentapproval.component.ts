@@ -32,6 +32,7 @@ export class DocumentapprovalComponent implements OnInit {
   approvedocument(id: number) {
     this.documentService.approvedocument(id).subscribe({
       next: (response: AppResponse) => {
+        this.documents=response.data;
         this.ngOnInit();
       },
       error: (err) => {

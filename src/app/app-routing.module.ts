@@ -10,7 +10,7 @@ import { LoanComponent } from './component/loan/loan.component';
 import { IntroComponent } from './component/intro/intro.component';
 import { DocumentComponent } from './component/document/document.component';
 
-import { LoanPlansComponent } from './component/loan-plans/loan-plans.component';
+
 
 import { AccountdetailsComponent } from './component/admin/accountdetails/accountdetails.component';
 import { LoaapprovedComponent } from './component/admin/loanpproved/loaapproved.component';
@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'loan', component:LoanComponent, canActivate: [authGuard]},
   {path: 'intro', component:IntroComponent, canActivate: [authGuard]},
   
-  {path: 'loanplan', component:LoanPlansComponent, canActivate: [authGuard]},
+  
   {path: 'accountdetails', component:AccountdetailsComponent, canActivate: [authGuard]},
   {path: 'loanapproved', component:LoaapprovedComponent, canActivate: [authGuard]},
   {path: 'documentapproval', component:DocumentapprovalComponent, canActivate: [authGuard]},

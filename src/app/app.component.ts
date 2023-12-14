@@ -14,7 +14,12 @@ export class AppComponent implements OnInit {
     rendererSettings: {
       className: 'lottie-loader',
     },
-  };
+
+  }
+  options1: AnimationOptions = {
+    path: '/assets/loan-icons.json',
+  }
+
 
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;

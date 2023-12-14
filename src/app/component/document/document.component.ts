@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
+import { ToastrService } from 'ngx-toastr';
 import { AppResponse } from 'src/app/model/appResponse';
 import { AppUser } from 'src/app/model/appUser';
 import { Document } from 'src/app/model/document';
@@ -30,6 +32,8 @@ export class DocumentComponent implements OnInit {
   fileSizeError = false;
   fileTypeError = false;
 
+  
+
   onFileSelected(event: any) {
     const fileInput = event.target;
     if (fileInput && fileInput.files.length > 0) {
@@ -41,7 +45,9 @@ export class DocumentComponent implements OnInit {
 
   constructor(
     private documentService: DocumentService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastr:ToastrService,
+    private router:Router
   ) {}
 
   user: AppUser = this.storageService.getLoggedInUser();
@@ -82,6 +88,8 @@ export class DocumentComponent implements OnInit {
       next: (response: AppResponse) => {
         this.documents = response.data;
         this.showAnimation = false;
+        this.toastr.success('Document Upload Successfully');
+        this.router.navigate(['']);
        
         const uploadedDocumentId = response.data.id;
         console.log('Document uploaded successfully:', response.data);
@@ -90,6 +98,7 @@ export class DocumentComponent implements OnInit {
         console.error('Error uploading document:', err);
       },
     });
+    
   }
 
   togglePdfViewer(documentId: number): void {

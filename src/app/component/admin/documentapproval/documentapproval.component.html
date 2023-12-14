@@ -23,7 +23,9 @@
           <tr>
             <th>ID</th>
             <th>UserName</th>
+
             <th>Document Name</th>
+            <th>View PDF</th>
 
             <th>Action</th>
           </tr>
@@ -31,11 +33,12 @@
         <tbody>
           <tr *ngFor="let document of documents">
             <td>{{ document.id }}</td>
+            <td>{{ document.username }}</td>
 
             <td>{{ document.documentName }}</td>
 
             <td>
-              {{ document.documentFile }}
+              <img src="/assets/pdf.png" height="60" />
               <button
                 class="mt-3"
                 class="btn btn-primary"
@@ -43,21 +46,12 @@
               >
                 View PDF
               </button>
-              <!-- <pdf-viewer
-                *ngIf="showPdf"
-                src="{{
-                  'http://localhost:8080/api/DocumentType/downloadFile/' +
-                    document.id
-                }}"
-                [render-text]="true"
-                [original-size]="false"
-                style="width: 350px; height: 350px"
-              ></pdf-viewer> -->
             </td>
 
             <td>
               <button
-                class="btn btn-success"
+                type="button"
+                class="btn btn-approve"
                 (click)="approvedocument(document.id)"
               >
                 Approve
@@ -74,5 +68,15 @@
         window.open(pdfUrl, "_blank", "height=600,width=800");
       }
     </script>
+    <style>
+      .btn-approve {
+        background-color: #28a745;
+        color: #fff;
+      }
+
+      .btn-approve:hover {
+        background-color: #218838;
+      }
+    </style>
   </body>
 </html>

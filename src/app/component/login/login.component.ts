@@ -5,6 +5,7 @@ import { AppResponse } from 'src/app/model/appResponse';
 import { Login } from 'src/app/model/login';
 import { AppUser } from 'src/app/model/appUser';
 import { AuthService } from 'src/app/service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +20,9 @@ export class LoginComponent {
   password: String = '';
   error: String = '';
   nameRef:String='';
+ 
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private toastr:ToastrService) {}
 
   login(_loginForm: Form): void {
     let login: Login = {
@@ -31,6 +33,8 @@ export class LoginComponent {
       next: (response: AppResponse) => {
         let user: AppUser = response.data;
         this.authService.setLoggedIn(user);
+        
+        this.toastr.success('Login successfully');
       },
       error: (err) => {
         console.log(err);

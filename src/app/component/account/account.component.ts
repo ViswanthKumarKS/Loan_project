@@ -75,8 +75,10 @@ export class AccountComponent implements OnInit {
     this.accountService.createaccount(newAccount).subscribe({
       next: (response: AppResponse) => {
         this.ngOnInit();
+
         this.showAnimation = false;
         this.isAccountCreated = false;
+        this.toastr.success('Account Created successfully');
       },
       error: (err) => {
         let message: string = err?.error?.error?.message;

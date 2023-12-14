@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './component/home/home.component';
@@ -20,12 +21,12 @@ import { DocumentComponent } from './component/document/document.component';
 import { LoanComponent } from './component/loan/loan.component';
 import { IntroComponent } from './component/intro/intro.component';
 
-import { LoanPlansComponent } from './component/loan-plans/loan-plans.component';
+
 
 import { AccountdetailsComponent } from './component/admin/accountdetails/accountdetails.component';
 import { LoaapprovedComponent } from './component/admin/loanpproved/loaapproved.component';
 import { DocumentapprovalComponent } from './component/admin/documentapproval/documentapproval.component';
-import {  PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 export function playerFactory() {
   return player;
@@ -42,11 +43,10 @@ export function playerFactory() {
     DocumentComponent,
     LoanComponent,
     IntroComponent,
-    LoanPlansComponent,
+   
     AccountdetailsComponent,
     LoaapprovedComponent,
     DocumentapprovalComponent,
- 
   ],
   imports: [
     BrowserModule,
@@ -54,7 +54,10 @@ export function playerFactory() {
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
+
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [

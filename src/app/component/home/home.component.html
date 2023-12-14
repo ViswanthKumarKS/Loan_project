@@ -65,34 +65,29 @@
 
       <div class="steps">
         <div class="step">
-          <img
-            src="/assets/Account.png"
-            width="90px"
-            height="100px"
-            style="transition: transform 0.8s"
-          />
+          <div class="lottie-container">
+            <ng-lottie [options]="options" width="250px" height="250px"></ng-lottie>
+
+          </div>
           <h3 routerLink="/account">Step 1: Account Detail</h3>
           <p>Provide your account information.</p>
+          
         </div>
 
         <div class="step" style="transition: transform 0.8s">
-          <img
-            src="/assets/Loan.png"
-            width="120px"
-            height="100px"
-            style="transition: transform 0.8s"
-          />
+          <div class="lottie-container">
+            <ng-lottie [options]="options1" width="250px" height="250px"></ng-lottie>
+
+          </div>
           <h3 routerLink="/loan">Step 2: Loan Details</h3>
           <p>Share details about the loan you are applying for.</p>
         </div>
 
         <div class="step" style="transition: transform 0.8s">
-          <img
-            src="/assets/document.png"
-            width="120px"
-            height="100px"
-            style="transition: transform 0.8s"
-          />
+          <div class="lottie-container">
+            <ng-lottie [options]="options2" width="250px" height="250px"></ng-lottie>
+
+          </div>
           <h3 routerLink="/document">Step 3: Document Details</h3>
           <p>Submit necessary documents for verification.</p>
         </div>

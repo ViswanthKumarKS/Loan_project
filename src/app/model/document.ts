@@ -3,4 +3,5 @@ export interface Document {
   documentName:string;
   boolean: boolean;
   documentFile:string;
+  username:string;
 }
