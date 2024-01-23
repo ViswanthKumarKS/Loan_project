@@ -30,4 +30,8 @@ export class LoanService {
     const appurl = `${urlEndpoint.baseUrl}/admin/approval/${id}`;
     return this.http.put<AppResponse>(appurl,null);
   }
+
+  filterLoans(minAmount:number,maxAmount:number): Observable<AppResponse>{
+    return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/admin/filter/${minAmount}/${maxAmount}`);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Pipe,PipeTransform } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
 import { AnimationOptions } from 'ngx-lottie';
@@ -6,16 +6,24 @@ import { AppResponse } from 'src/app/model/appResponse';
 import { Register } from 'src/app/model/register';
 import { AuthService } from 'src/app/service/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
 })
+
+
+
+
+
+
 export class RegisterComponent {
   registers: Register[] = [];
   options: AnimationOptions = {
     path: '/assets/auth.json',
   };
+inputField: any;
 
   constructor(
     private registerService: AuthService,
@@ -28,10 +36,18 @@ export class RegisterComponent {
   person: String = '';
 
   onSubmit(form: any) {
+
+   
+
+    // Capitalize only the first letter
+    
+
+   
     const newregister: Register = {
       username: this.nameRef,
       password: this.password,
       name: this.person,
+      
     };
     console.log(newregister);
     this.registerService.register(newregister).subscribe({

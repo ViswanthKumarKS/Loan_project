@@ -14,10 +14,17 @@
               >Username</label
             >
             <input
+             
               type="email"
               id="form-label"
               class="form-control form-control-lg"
               placeholder="Enter valid Username"
+              #inputField
+              (input)="
+            inputField.value =
+              inputField.value.charAt(0).toUpperCase() +
+              inputField.value.slice(1)
+          "
               name="username"
               [(ngModel)]="username"
               ngModel
@@ -60,10 +67,10 @@
             <p class="error">{{ error }}</p>
           </div>
 
-          <div class="text-center text-lg-start mt-2 pt-2 button-radius:22px">
+          <div class="text-center text-lg-start mt-2 pt-2">
             <button
               type="submit"
-              class="btn btn-primary btn-lg border rounded-start rounded-end"
+              class="login btn btn-primary btn-lg border rounded-start rounded-end"
               style="padding-left: 2.5rem; padding-right: 2.5rem; width: 330px"
               router
               Link=" "

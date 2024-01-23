@@ -5,7 +5,6 @@ import { Loan } from 'src/app/model/loan';
 import { StorageService } from 'src/app/service/storage.service';
 import { LoanService } from 'src/app/service/loan.service';
 import { AnimationOptions } from 'ngx-lottie';
-import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-loan',
@@ -20,7 +19,7 @@ export class LoanComponent implements OnInit {
   loans: Loan[] = [];
   error: String = '';
   loanType:String='';
-  amount:number=0;
+  amount:number|null=null;
 
   username:String='';
   showAnimation = false;
@@ -40,7 +39,7 @@ export class LoanComponent implements OnInit {
        console.log(response.data.loanRequest);
        
         
-        this.loans.push(response.data);
+       this.loans.push(response.data);
         this.showAnimation = !this.loans.length;
 
         console.log(response.data);
@@ -70,7 +69,6 @@ export class LoanComponent implements OnInit {
         this.ngOnInit();
         this.showAnimation = false;
         this.isLoanCreated = false; 
-        
         this.toastr.success('Loan Applied Successfully');
        
        

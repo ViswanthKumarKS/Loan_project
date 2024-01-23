@@ -26,6 +26,7 @@ export class AccountComponent implements OnInit {
   accounts: Account[] = [];
   showAnimation = false;
   isAccountCreated: boolean = false;
+  id:number=0;
 
   error: string = '';
   name: string = '';
@@ -45,6 +46,10 @@ export class AccountComponent implements OnInit {
   user: AppUser = this.storageService.getLoggedInUser();
 
   ngOnInit(): void {
+    
+    this.generateRandomAccountNumber();
+    
+
     this.accountService.getaccountdetails(this.user.id).subscribe({
       next: (response: AppResponse) => {
         this.accounts.push(response.data);
@@ -61,6 +66,7 @@ export class AccountComponent implements OnInit {
     let userid: AppUser = this.storageService.getLoggedInUser();
     const newAccount: Account = {
       name: this.name,
+      id:this.id,
       acc_no: this.accountnumber,
       address: this.address,
       city: this.city,
@@ -78,6 +84,7 @@ export class AccountComponent implements OnInit {
 
         this.showAnimation = false;
         this.isAccountCreated = false;
+        this.generateRandomAccountNumber();
         this.toastr.success('Account Created successfully');
       },
       error: (err) => {
@@ -85,5 +92,12 @@ export class AccountComponent implements OnInit {
         this.error = message.includes(',') ? message.split(',')[0] : message;
       },
     });
+  }
+
+  generateRandomAccountNumber() {
+    const randomNum =
+      Math.floor(Math.random() * (9999999999999 - 1000000000000 + 1)) +
+      1000000000000;
+    this.accountnumber = randomNum;
   }
 }

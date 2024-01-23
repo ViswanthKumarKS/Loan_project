@@ -24,4 +24,12 @@ export class AccountService {
     const appurl = `${urlEndpoint.baseUrl}/account`;
     return this.http.post<AppResponse>(appurl, newaccount);
   }
+
+  sort(sortOrder: string):Observable<AppResponse>{
+    const appurl=`${urlEndpoint.baseUrl}/admin/account/sort/${sortOrder}`;
+    return this.http.get<AppResponse>(appurl);
+  }
+
 }
+
+

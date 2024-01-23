@@ -1,5 +1,4 @@
 <div class="d-flex justify-content-center">
- 
   <div *ngIf="!accounts.length && !showAnimation" class="lottie-container">
     <ng-lottie [options]="options" width="500px" height="500px"></ng-lottie>
   </div>
@@ -43,149 +42,197 @@
           <div class="container">
             <form #accountForm="ngForm" (ngSubmit)="onSubmit(accountForm)">
               <div class="row gy-4">
-                <div class="col-md-6">
-                  <label class="form-label ">Name</label>
-                  <input
-                    type="text"
-                    class=" shadowed-input  "
-                    id="name"
-                    aria-describedby="nameHelp"
-                    name="name"
-                    [(ngModel)]="name"
-                    ngModel
-                    required
-                    minlength="3"
-                    maxlength="15"
-                    #Namevaild="ngModel"
-                    [ngClass]="
-                      Namevaild.invalid && Namevaild.dirty ? 'is-invalid ' : ''
-                    "
-                  />
-                  <div *ngIf="Namevaild.invalid" class="invalid-feedback">
-                    please enter the name min 3 characters
+                <div class="">
+                  <div class="input-group my-3">
+                    <span class="input-group-text "
+                      ><img src="/assets/name.png" height="40" width="40" />
+                      <label class="form-label ps-2 d-flex align-items-center">Name</label></span
+                    >
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      #inputField
+                      (input)="
+                    inputField.value =
+                      inputField.value.charAt(0).toUpperCase() +
+                      inputField.value.slice(1)
+                  "
+                      id="name"
+                      aria-describedby="nameHelp"
+                      name="name"
+                      [(ngModel)]="name"
+                      ngModel
+                      required
+                      minlength="3"
+                      maxlength="15"
+                      #Namevaild="ngModel"
+                      [ngClass]="
+                        Namevaild.invalid && Namevaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="Namevaild.invalid" class="invalid-feedback">
+                      please enter the name min 3 characters
+                    </div>
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">Account Number</label>
-                  <input
-                    type="text"
-                    class=" shadowed-input "
-                    id="exampleInputPassword1"
-                    name="accountNumber"
-                    [(ngModel)]="accountnumber"
-                    ngModel
-                    required
-                    pattern="[0-9]{1,10}"
-                    #accNumValid="ngModel"
-                    [ngClass]="
-                      accNumValid.invalid && accNumValid.dirty
-                        ? 'is-invalid '
-                        : ''
-                    "
-                  />
-                  <div
-                    *ngIf="accNumValid.invalid && accNumValid.dirty"
-                    class="invalid-feedback"
-                  >
-                    Please enter a valid account number.
+                <div class="">
+                  <div class="input-group my-3">
+                    <span class="input-group-text">
+                      <img src="/assets/bank.png" height="40" width="40" />
+                      <label class="form-label ps-2">Account Number</label></span
+                    >
+                   
+
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputPassword1"
+                      name="accountNumber"
+                      [(ngModel)]="accountnumber"
+                      ngModel
+                      required
+                      pattern="[0-9]{1,14}"
+                      #accNumValid="ngModel"
+                      [ngClass]="
+                        accNumValid.invalid && accNumValid.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div
+                      *ngIf="accNumValid.invalid && accNumValid.dirty"
+                      class="invalid-feedback"
+                    >
+                      Please enter a valid account number.
+                    </div>
                   </div>
                 </div>
 
-                <div class="col-md-12">
-                  <label class="form-label">Address</label>
-                  <input
-                    type="text"
-                    class=" shadowed-input "
-                    id="address"
-                    aria-describedby="nameHelp"
-                    name="address"
-                    [(ngModel)]="address"
-                    ngModel
-                    required
-                    minlength="3"
-                    #addressvaild="ngModel"
-                    [ngClass]="
-                      addressvaild.invalid && addressvaild.dirty
-                        ? 'is-invalid '
-                        : ''
-                    "
-                  />
-                  <div *ngIf="addressvaild.invalid" class="invalid-feedback">
-                    please enter the address
+                <div class="">
+                  <div class="input-group my-3">
+                    <span class="input-group-text">
+                      <img src="/assets/address.png" height="40" width="40" />
+                      <label class="form-label ps-2">Address</label></span
+                    >
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="address"
+                      aria-describedby="nameHelp"
+                      name="address"
+                      [(ngModel)]="address"
+                      ngModel
+                      required
+                      minlength="3"
+                      #addressvaild="ngModel"
+                      [ngClass]="
+                        addressvaild.invalid && addressvaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="addressvaild.invalid" class="invalid-feedback">
+                      please enter the address
+                    </div>
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">City</label>
-                  <input
-                    type="text"
-                    class=" shadowed-input "
-                    id="city"
-                    aria-describedby="nameHelp"
-                    name="city"
-                    [(ngModel)]="city"
-                    ngModel
-                    required
-                    minlength="3"
-                    #cityvaild="ngModel"
-                    [ngClass]="
-                      cityvaild.invalid && cityvaild.dirty ? 'is-invalid ' : ''
-                    "
-                  />
-                  <div *ngIf="cityvaild.invalid" class="invalid-feedback">
-                    please enter the city
+                <div class="">
+                  <div class="input-group my-3">
+                    <span class="input-group-text">
+                      <img src="/assets/city.png" height="40" width="40" />
+                      <label class="form-label ps-2">City</label></span
+                    >
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="city"
+                      aria-describedby="nameHelp"
+                      name="city"
+                      [(ngModel)]="city"
+                      ngModel
+                      required
+                      minlength="3"
+                      #cityvaild="ngModel"
+                      [ngClass]="
+                        cityvaild.invalid && cityvaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="cityvaild.invalid" class="invalid-feedback">
+                      please enter the city
+                    </div>
                   </div>
                 </div>
 
-                <div class="col-md-6">
-                  <label class="form-label">State</label>
-                  <input
-                    type="text"
-                    class=" shadowed-input "
-                    id="state"
-                    aria-describedby="nameHelp"
-                    name="state"
-                    [(ngModel)]="state"
-                    ngModel
-                    required
-                    minlength="3"
-                    #statevaild="ngModel"
-                    [ngClass]="
-                      statevaild.invalid && statevaild.dirty
-                        ? 'is-invalid '
-                        : ''
-                    "
-                  />
-                  <div *ngIf="statevaild.invalid" class="invalid-feedback">
-                    please enter the state
+                <div class="">
+                  <div class="input-group my-3">
+                    <span class="input-group-text">
+                      <img src="/assets/state.png" height="40" width="40" />
+                      <label class="form-label ps-2">State</label></span
+                    >
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="state"
+                      aria-describedby="nameHelp"
+                      name="state"
+                      [(ngModel)]="state"
+                      ngModel
+                      required
+                      minlength="3"
+                      #statevaild="ngModel"
+                      [ngClass]="
+                        statevaild.invalid && statevaild.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div *ngIf="statevaild.invalid" class="invalid-feedback">
+                      please enter the state
+                    </div>
                   </div>
                 </div>
 
-                <div class="col-md-5">
-                  <label class="form-label">Balance</label>
-                  <input
-                    type="text"
-                    class=" shadowed-input "
-                    id="exampleInputEmail1"
-                    aria-describedby="nameHelp"
-                    name="balance"
-                    [(ngModel)]="balance"
-                    ngModel
-                    required
-                    pattern="[0-9]+(\.[0-9]{1,2})?"
-                    #balancevalid="ngModel"
-                    [ngClass]="
-                      balancevalid.invalid && balancevalid.dirty
-                        ? 'is-invalid '
-                        : ''
-                    "
-                  />
-                  <div
-                    *ngIf="balancevalid.invalid && balancevalid.dirty"
-                    class="invalid-feedback"
-                  >
-                    Please enter a valid balance.
+                <div class="">
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <img src="/assets/balance.png" height="40" width="40" />
+                      <label class="form-label ps-2">Balance</label></span
+                    >
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="nameHelp"
+                      name="balance"
+                      [(ngModel)]="balance"
+                      ngModel
+                      required
+                      pattern="[0-9]+(\.[0-9]{1,2})?"
+                      #balancevalid="ngModel"
+                      [ngClass]="
+                        balancevalid.invalid && balancevalid.dirty
+                          ? 'is-invalid '
+                          : ''
+                      "
+                    />
+                    <div
+                      *ngIf="balancevalid.invalid && balancevalid.dirty"
+                      class="invalid-feedback"
+                    >
+                      Please enter a valid balance.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -217,7 +264,9 @@
     margin-bottom: 20px;
   }
 
-  .table, .table th, .table td {
+  .table,
+  .table th,
+  .table td {
     border: 1px solid #dee2e6;
   }
 
@@ -226,7 +275,8 @@
     color: #fff;
   }
 
-  .table th, .table td {
+  .table th,
+  .table td {
     padding: 8px;
     text-align: left;
   }
@@ -301,5 +351,3 @@
 <div *ngIf="accounts.length && showAnimation" class="lottie-container">
   <ng-lottie [options]="approved" width="500px" height="500px"></ng-lottie>
 </div>
-
-

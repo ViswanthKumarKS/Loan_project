@@ -34,7 +34,7 @@ export class LoginComponent {
         let user: AppUser = response.data;
         this.authService.setLoggedIn(user);
         
-        this.toastr.success('Login successfully');
+        this.toastr.success('Login Successfully');
       },
       error: (err) => {
         console.log(err);

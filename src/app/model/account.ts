@@ -1,8 +1,8 @@
 import { AppUser } from './appUser';
 
 export interface Account {
-  id?: number;
-  name: String;
+  id: number;
+  name: string;
   address: String;
   city: String;
   state: String;

@@ -10,8 +10,11 @@ import { LoanService } from 'src/app/service/loan.service';
 })
 export class LoaapprovedComponent implements OnInit {
   loans: Loan[] = [];
-  error: String = '';
+  error: string = '';
   router: any;
+  minAmount: number=0;
+  maxAmount: number=50000;
+  filteredLoans: Loan[]=[];
 
   constructor(private loanService: LoanService) {}
 
@@ -46,4 +49,22 @@ export class LoaapprovedComponent implements OnInit {
     this.router.navigate(['/documentapproval', pdfUrl]);
   }
 
+  
+  onSubmit() {
+    console.log(this.minAmount);
+    
+    console.log(this.maxAmount);
+    this.loanService.filterLoans(this.minAmount, this.maxAmount).subscribe({
+      next:(response:any)=>{
+        console.log(response)
+        this.filteredLoans = response;
+       
+      }
+    })
+    console.log(this.filteredLoans);
+  this.loans=this.filteredLoans;
+  }
 }
+     
+
+  

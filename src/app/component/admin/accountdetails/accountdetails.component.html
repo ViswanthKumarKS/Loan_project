@@ -1,59 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stylish Table Example</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stylish Table Example</title>
 
- 
-  <style>
-    body {
-      padding: 20px;
-    }
+    <style>
+      body {
+        padding: 20px;
+      }
 
-   
-    .my-table {
-      width: 100%;
-    }
+      .my-table {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="my-3">Account Details</h3>
 
-  
+      <input
+        type="text"
+        class="border border-radius-5 py-2"
+        placeholder="Search by name"
+        name="searchQuery"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearch()"
+        style="
+          width: 550px;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        "
+      />
+      <button
+      class="btn border border-radius-5 ms-1 search-button"
+     
+      >
+        <i class="fas fa-search fa-1x"></i>
+      </button>
 
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <h3 class="my-3">Account Details</h3>
-
-    <table class="table table-bordered my-3 my-table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">NAME</th>
-          <th scope="col">ACCOUNT NUMBER</th>
-          <th scope="col">ADDRESS</th>
-          <th scope="col">STATE</th>
-          <th scope="col">CITY</th>
-          <th scope="col">BALANCE</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let account of accounts">
-          <td>{{ account.id }}</td>
-          <td>{{ account.name }}</td>
-          <td>{{ account.acc_no }}</td>
-          <td>{{ account.address }}</td>
-          <td>{{ account.state }}</td>
-          <td>{{ account.city }}</td>
-          <td>₹ {{ account.balance }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-  </div>
-
- 
- 
-
-</body>
+      <div class="btn-group d-flex justify-content-end" >
+        <button
+          class="sort dropdown-toggle custom-sort-button"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          SORT
+        </button>
+        <div class="dropdown-menu">
+          <button class="dropdown-item" (click)="sortPostsAlphabetically()">
+            {{ sortOrder === 'asc' ? 'Z to A' : 'A to Z' }}
+          </button>
+        </div>
+      </div>
+      <table class="table table-bordered my-3 my-table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">ACCOUNT NUMBER</th>
+            <th scope="col">ADDRESS</th>
+            <th scope="col">STATE</th>
+            <th scope="col">CITY</th>
+            <th scope="col">BALANCE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of filteredaccounts">
+            <td>{{ account.id }}</td>
+            <td>{{ account.name }}</td>
+            <td>{{ account.acc_no }}</td>
+            <td>{{ account.address }}</td>
+            <td>{{ account.state }}</td>
+            <td>{{ account.city }}</td>
+            <td>₹ {{ account.balance }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>

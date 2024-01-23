@@ -5,25 +5,30 @@
 <div *ngIf="isLoggedIn" class="row">
   <header class="navbar sticky-top bg-primary p-2 shadow">
     <a class="navbar-brand px-3 text-white">
-      <img src="/assets/Fund Wave.png" height="40" width="40" />
-       FUND WAVE 
-    
+      <img src="/assets/logo.png" height="40" width="40" />
+      FUND WAVE
     </a>
   </header>
 </div>
 
 <div *ngIf="isLoggedIn && isAdmin" class="row vh-100 flex-grow-1">
-  <div class="sidebar border border-right col-2 p-0 h-100">
+  <div class="sidebar border border-right col-2 p-0 ">
     <div class="bg-body-tertiary h-100" tabindex="-1">
-      <div class="d-flex flex-column p-0 pt-3 overflow-y-auto h-100">
+      <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
         <ul class="nav flex-column">
-          <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+          <li
+            class="nav-item d-flex align-items-center px-4 sideBarItem"
+            routerLink="/admin"
+          >
             <i class="fa-solid fa-house"></i>
             <a class="nav-link d-flex align-items-center" routerLink="/admin">
               Home
             </a>
           </li>
-          <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+          <li
+            class="nav-item d-flex align-items-center px-4 sideBarItem"
+            routerLink="/accountdetails"
+          >
             <i class="fa-solid fa-user-circle"></i>
             <a
               class="nav-link d-flex align-items-center"
@@ -31,7 +36,10 @@
               >AccountDetails</a
             >
           </li>
-          <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+          <li
+            class="nav-item d-flex align-items-center px-4 sideBarItem"
+            routerLink="/loanapproved"
+          >
             <i class="fa-solid fa-hand-holding-usd"></i>
             <a
               class="nav-link d-flex align-items-center"
@@ -39,16 +47,22 @@
               >Loan Approval</a
             >
           </li>
-          <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+          <li
+            class="nav-item d-flex align-items-center px-4 sideBarItem"
+            routerLink="/documentapproval"
+          >
             <i class="fa-solid fa-file-alt"></i>
             <a
               class="nav-link d-flex align-items-center"
               routerLink="/documentapproval"
-              >Document Approval</a
+              >Doc's Approval</a
             >
           </li>
 
-          <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+          <li
+            class="nav-item d-flex align-items-center px-4 sideBarItem"
+            (click)="logout()"
+          >
             <i class="fa-solid fa fa-power-off"></i>
             <a
               class="nav-link d-flex align-items-center"
@@ -70,7 +84,7 @@
   <div class="sidebar border border-right col-2 p-0">
     <div class="bg-body-tertiary h-100" tabindex="-1">
       <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
-        <ul class="nav flex-column h-100">
+        <ul class="nav flex-column">
           <li
             class="nav-item d-flex align-items-center px-4 sideBarItem"
             routerLink="/"
@@ -90,14 +104,14 @@
             </a>
           </li>
           <li
-          class="nav-item d-flex align-items-center px-4 sideBarItem"
-          routerLink="/loan"
-        >
-          <i class="fa-solid fa-hand-holding-usd"></i>
-          <a class="nav-link d-flex align-items-center" routerLink="/loan"
-            >Loan
-          </a>
-        </li>
+            class="nav-item d-flex align-items-center px-4 sideBarItem"
+            routerLink="/loan"
+          >
+            <i class="fa-solid fa-hand-holding-usd"></i>
+            <a class="nav-link d-flex align-items-center" routerLink="/loan"
+              >Loan
+            </a>
+          </li>
           <li
             class="nav-item d-flex align-items-center px-4 sideBarItem"
             routerLink="document"
@@ -108,8 +122,10 @@
             >
           </li>
 
-       
-          <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+          <li
+            class="nav-item d-flex align-items-center px-4 sideBarItem"
+            (click)="logout()"
+          >
             <i class="fa-solid fa fa-power-off"></i>
             <a
               class="nav-link d-flex align-items-center"

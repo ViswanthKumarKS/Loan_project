@@ -11,7 +11,6 @@
   }
 
   .table-bordered thead th {
- 
     color: black;
   }
 
@@ -34,8 +33,16 @@
 </style>
 <h3 class="my-2">Loan Approval Details</h3>
 
+<div class="d-flex justify-content-end">
+  <label for="priceRange" class="priceRange pe-2">Loan Amount Range :</label>
+  <mat-slider min="0" max="50000" discrete="true" (input)="onSubmit()">
+    <input value="0" matSliderStartThumb [(ngModel)]="minAmount" />
+    <input value="50000" matSliderEndThumb [(ngModel)]="maxAmount" />
+  </mat-slider>
+</div>
+
 <table class="table table-bordered my-4">
-  <thead>
+  <thead *ngIf="loans.length > 0">
     <tr>
       <th>ID</th>
       <th>Username</th>

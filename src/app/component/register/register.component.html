@@ -8,17 +8,24 @@
         <h2 class="display-4 text-primary">Register</h2>
         <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
           <!-- Username input -->
-          <div class="form-outline  col-md-10">
+          <div class="form-outline col-md-10">
             <label class="form-label mb-1" for="username">Name</label>
             <input
               type="text"
               id="Name"
               class="form-control"
+              #inputField
+              (input)="
+            inputField.value =
+              inputField.value.charAt(0).toUpperCase() +
+              inputField.value.slice(1)
+          "
               placeholder="Enter a valid name"
               name="person"
               [(ngModel)]="person"
               ngModel
               required
+              appSelectvalidator
               minlength="3"
               maxlength="15"
               #UserNamevaild="ngModel"
@@ -28,7 +35,8 @@
                   : ''
               "
             />
-            <div *ngIf="UserNamevaild.invalid" class="invalid-feedback">
+          
+            <div *ngIf="UserNamevaild.invalid&&UserNamevaild.dirty || UserNamevaild.errors?.['validName']"  class="invalid-feedback">
               please enter the name min 3 characters
             </div>
           </div>
@@ -40,21 +48,27 @@
               type="text"
               id="name"
               class="form-control"
+              #inputField
+              (input)="
+            inputField.value =
+              inputField.value.charAt(0).toUpperCase() +
+              inputField.value.slice(1)
+          "
               placeholder="Enter a valid username"
               name="name"
-              ngModel
               required
-              minlength="3"
-              maxlength="15"
+              appSelectvalidator
               #Namevaild="ngModel"
               [(ngModel)]="nameRef"
               [ngClass]="
                 Namevaild.invalid && Namevaild.dirty ? 'is-invalid ' : ''
               "
-             
             />
-            <div *ngIf="Namevaild.invalid" class="invalid-feedback">
-              please enter the name min 3 characters
+            <div
+              *ngIf="Namevaild.invalid && Namevaild.dirty || Namevaild.errors?.['validName']"
+              class="invalid-feedback"
+            >
+              please enter the name with min 3 characters
             </div>
           </div>
 
@@ -104,7 +118,6 @@
             <div *ngIf="confpass.invalid" class="invalid-feedback">
               Password is mismatch
             </div>
-            
           </div>
 
           <div class="d-flex align-items-center mb-4">
@@ -120,7 +133,7 @@
           <div class="text-center text-lg-start">
             <button
               type="submit"
-              class="btn btn-primary  btn-lg"
+              class="login btn btn-primary btn-lg border rounded-start rounded-end"
               style="padding-left: 2.5rem; padding-right: 2.5rem; width: 460px"
               [disabled]="registerForm.invalid"
             >
